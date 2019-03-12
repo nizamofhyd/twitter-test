@@ -1,0 +1,63 @@
+ext {
+
+    //=======Versions=======
+    kotlin_version = '1.3.20'
+    androidSupportVersion = "1.0.0"
+    androidConstraintLayoutVersion = "1.1.3"
+    daggerVersion = "2.21"
+    junitVersion = "4.12"
+    multidexVersion = "2.0.0"
+    retrofitVersion = "2.5.0"
+
+    //====Libraries=========
+
+    //Google
+    androidSupport = "androidx.appcompat:appcompat:${androidSupportVersion}"
+    androidConstraintLayout = "androidx.constraintlayout:constraintlayout:${androidConstraintLayoutVersion}"
+    multiDex = "androidx.multidex:multidex:${multidexVersion}"
+
+    //Kotlin
+    kotlin = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${kotlin_version}"
+
+    //Dagger2
+    daggerAndroid = "com.google.dagger:dagger-android:${daggerVersion}"
+    daggerAndroidSupport = "com.google.dagger:dagger-android-support:${daggerVersion}"
+    daggerKaptCompiler = "com.google.dagger:dagger-compiler:${daggerVersion}"
+
+    //Retrofit
+    retrofit = "com.squareup.retrofit2:retrofit:${retrofitVersion}"
+
+    //Test libraries
+    junit = "junit:junit:${junitVersion}"
+
+    //======Modules========
+
+    //app and android dependencies here
+    androidDependencies = [
+            [configuration: "implementation", dependency: multiDex],
+            [configuration: "implementation", dependency: androidSupport],
+            [configuration: "implementation", dependency: androidConstraintLayout]
+    ]
+
+    //common dependencies
+    commonDependencies = [
+            [configuration: "implementation", dependency: kotlin],
+            [configuration: "implementation", dependency: daggerAndroid],
+            [configuration: "implementation", dependency: daggerAndroidSupport]
+    ]
+
+    //Imported in all modules
+    unitTestsDependencies = [
+            [configuration: "testImplementation", dependency: junit]
+    ]
+
+    //Imported in all modules
+    kaptProcessorsDependencies = [
+            [configuration: "kapt", dependency: daggerKaptCompiler]
+    ]
+
+    dataDependencies = [
+            [configuration: "implementation", dependency: retrofit]
+    ]
+
+}

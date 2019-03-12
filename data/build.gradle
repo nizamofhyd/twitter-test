@@ -1,0 +1,22 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+
+apply from: '../dependencies/config/android_commons.gradle'
+
+dependencies {
+
+    rootProject.commonDependencies.each { item ->
+        add(item.configuration, item.dependency, item.options)
+    }
+
+    rootProject.dataDependencies.each { item ->
+        add(item.configuration, item.dependency, item.options)
+    }
+    rootProject.kaptProcessorsDependencies.each { item ->
+        add(item.configuration, item.dependency, item.options)
+    }
+    rootProject.unitTestsDependencies.each { item ->
+        add(item.configuration, item.dependency, item.options)
+    }
+}
