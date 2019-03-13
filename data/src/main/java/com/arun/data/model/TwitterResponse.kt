@@ -1,6 +1,6 @@
 package com.arun.data.model
 
 data class TwitterResponse(
-    val fullText: String,
-    val createdAt: String
+    val full_text: String,
+    val created_at: String
 )

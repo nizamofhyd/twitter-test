@@ -16,6 +16,7 @@ ext {
     //====Test libs versions=====
     junitVersion = "4.12"
     mockitoKotlinVersion = "2.0.0-RC2"
+    archCoreTestingVersion = "1.1.1"
 
     //====Libraries=========
 
@@ -26,6 +27,8 @@ ext {
     lifeCycleExtensions = "androidx.lifecycle:lifecycle-extensions:${archLifecycleVersion}"
     lifeCycleCommon = "androidx.lifecycle:lifecycle-common-java8:${archLifecycleVersion}"
     findBugs =  "com.google.code.findbugs:jsr305:${findBugsVersion}"
+    recyclerView =  "androidx.recyclerview:recyclerview:${androidSupportVersion}"
+    cardView =  "androidx.cardview:cardview:${androidSupportVersion}"
 
     //Kotlin
     kotlin = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${kotlin_version}"
@@ -44,10 +47,12 @@ ext {
 
     //Retrofit
     retrofit = "com.squareup.retrofit2:retrofit:${retrofitVersion}"
+    retrofitGsonConverter = "com.squareup.retrofit2:converter-gson:${retrofitVersion}"
 
     //Test libraries
     junit = "junit:junit:${junitVersion}"
     mockitoKotlin = "com.nhaarman.mockitokotlin2:mockito-kotlin:${mockitoKotlinVersion}"
+    archCore = "android.arch.core:core-testing:${archCoreTestingVersion}"
 
     //======Modules========
 
@@ -58,7 +63,9 @@ ext {
             [configuration: "implementation", dependency: androidConstraintLayout],
             [configuration: "implementation", dependency: lifeCycleExtensions],
             [configuration: "implementation", dependency: lifeCycleCommon],
-            [configuration: "implementation", dependency: rxAndroid]
+            [configuration: "implementation", dependency: rxAndroid],
+            [configuration: "implementation", dependency: recyclerView],
+            [configuration: "implementation", dependency: cardView]
     ]
 
     //common dependencies
@@ -75,7 +82,8 @@ ext {
     //Imported in all modules
     unitTestsDependencies = [
             [configuration: "testImplementation", dependency: junit],
-            [configuration: "testImplementation", dependency: mockitoKotlin]
+            [configuration: "testImplementation", dependency: mockitoKotlin],
+            [configuration: "testImplementation", dependency: archCore]
     ]
 
     //Imported in all modules
@@ -85,7 +93,8 @@ ext {
     ]
 
     dataDependencies = [
-            [configuration: "implementation", dependency: rxJava2RetrofitAdapter]
+            [configuration: "implementation", dependency: rxJava2RetrofitAdapter],
+            [configuration: "implementation", dependency: retrofitGsonConverter]
     ]
 
 }

@@ -20,7 +20,7 @@ class TwitterUseCase @Inject constructor(private val twitterFeedRepository: Twit
     private val modelMapper: (List<TwitterResponse>) -> List<Tweet> = {
         val tweetsList = ArrayList<Tweet>()
         it.map {
-            val tweet = Tweet(it.createdAt, it.fullText)
+            val tweet = Tweet(it.created_at, it.full_text)
             tweetsList.add(tweet)
         }
         tweetsList
