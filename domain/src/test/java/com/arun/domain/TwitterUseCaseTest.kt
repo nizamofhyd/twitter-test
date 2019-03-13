@@ -2,6 +2,7 @@ package com.arun.domain
 
 import com.arun.data.model.TwitterResponse
 import com.arun.data.repository.ITwitterFeedRepository
+import com.arun.data.repository.TwitterFeedRepository
 import com.arun.domain.models.Tweet
 import com.arun.domain.usecases.TwitterUseCase
 import com.nhaarman.mockitokotlin2.mock
@@ -14,7 +15,7 @@ import org.mockito.ArgumentMatchers.anyString
 
 class TwitterUseCaseTest {
 
-    val mockTwitterFeedRepository = mock<ITwitterFeedRepository> {}
+    val mockTwitterFeedRepository = mock<TwitterFeedRepository> {}
 
     lateinit var listOfTwitterResponse: ArrayList<TwitterResponse>
     lateinit var listOfTweets: ArrayList<Tweet>
