@@ -8,7 +8,10 @@ ext {
     multidexVersion = "2.0.0"
     retrofitVersion = "2.5.0"
     rxJava2Version = "2.2.6"
+    rxJavaAndroidVersion = "2.1.0"
     rxJava2RetrofitAdapterVersion = "2.5.0"
+    archLifecycleVersion = "2.0.0"
+    findBugsVersion = "3.0.2"
 
     //====Test libs versions=====
     junitVersion = "4.12"
@@ -20,6 +23,9 @@ ext {
     androidSupport = "androidx.appcompat:appcompat:${androidSupportVersion}"
     androidConstraintLayout = "androidx.constraintlayout:constraintlayout:${androidConstraintLayoutVersion}"
     multiDex = "androidx.multidex:multidex:${multidexVersion}"
+    lifeCycleExtensions = "androidx.lifecycle:lifecycle-extensions:${archLifecycleVersion}"
+    lifeCycleCommon = "androidx.lifecycle:lifecycle-common-java8:${archLifecycleVersion}"
+    findBugs =  "com.google.code.findbugs:jsr305:${findBugsVersion}"
 
     //Kotlin
     kotlin = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${kotlin_version}"
@@ -29,9 +35,11 @@ ext {
     daggerAndroid = "com.google.dagger:dagger-android:${daggerVersion}"
     daggerAndroidSupport = "com.google.dagger:dagger-android-support:${daggerVersion}"
     daggerKaptCompiler = "com.google.dagger:dagger-compiler:${daggerVersion}"
+    daggerKaptAndroidProcessor = "com.google.dagger:dagger-android-processor:${daggerVersion}"
 
     //RxJava2
     rxJava2 = "io.reactivex.rxjava2:rxjava:${rxJava2Version}"
+    rxAndroid = "io.reactivex.rxjava2:rxandroid:${rxJavaAndroidVersion}"
     rxJava2RetrofitAdapter = "com.squareup.retrofit2:adapter-rxjava2:${rxJava2RetrofitAdapterVersion}"
 
     //Retrofit
@@ -48,16 +56,20 @@ ext {
             [configuration: "implementation", dependency: multiDex],
             [configuration: "implementation", dependency: androidSupport],
             [configuration: "implementation", dependency: androidConstraintLayout],
-            [configuration: "implementation", dependency: daggerAndroid],
-            [configuration: "implementation", dependency: daggerAndroidSupport]
+            [configuration: "implementation", dependency: lifeCycleExtensions],
+            [configuration: "implementation", dependency: lifeCycleCommon],
+            [configuration: "implementation", dependency: rxAndroid]
     ]
 
     //common dependencies
     commonDependencies = [
             [configuration: "implementation", dependency: kotlin],
+            [configuration: "implementation", dependency: daggerAndroid],
+            [configuration: "implementation", dependency: daggerAndroidSupport],
             [configuration: "implementation", dependency: dagger],
             [configuration: "implementation", dependency: rxJava2],
-            [configuration: "implementation", dependency: rxJava2RetrofitAdapter]
+            [configuration: "implementation", dependency: retrofit],
+            [configuration: "implementation", dependency: findBugs]
     ]
 
     //Imported in all modules
@@ -68,11 +80,12 @@ ext {
 
     //Imported in all modules
     kaptProcessorsDependencies = [
-            [configuration: "kapt", dependency: daggerKaptCompiler]
+            [configuration: "kapt", dependency: daggerKaptCompiler],
+            [configuration: "kapt", dependency: daggerKaptAndroidProcessor]
     ]
 
     dataDependencies = [
-            [configuration: "implementation", dependency: retrofit]
+            [configuration: "implementation", dependency: rxJava2RetrofitAdapter]
     ]
 
 }

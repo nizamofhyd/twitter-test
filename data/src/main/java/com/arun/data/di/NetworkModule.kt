@@ -27,4 +27,5 @@ class NetworkModule {
         return retrofit.create(TwitterService::class.java)
     }
 
+
 }

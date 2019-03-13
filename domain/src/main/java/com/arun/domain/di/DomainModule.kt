@@ -1,6 +1,6 @@
 package com.arun.domain.di
 
-import com.arun.data.repository.ITwitterFeedRepository
+import com.arun.data.repository.TwitterFeedRepository
 import com.arun.domain.usecases.TwitterUseCase
 import dagger.Module
 import dagger.Provides
@@ -11,7 +11,7 @@ class DomainModule {
 
     @Provides
     @Inject
-    fun provideTwitterUseCase(twitterFeedRepository: ITwitterFeedRepository): TwitterUseCase {
+    fun provideTwitterUseCase(twitterFeedRepository: TwitterFeedRepository): TwitterUseCase {
         return TwitterUseCase(twitterFeedRepository)
     }
 }

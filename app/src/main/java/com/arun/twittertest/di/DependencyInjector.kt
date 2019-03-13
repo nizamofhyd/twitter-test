@@ -6,8 +6,6 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
-import com.arun.data.di.DaggerDataComponent
-import com.arun.domain.di.DaggerDomainComponent
 import com.arun.twittertest.TwitterApplication
 import dagger.android.AndroidInjection
 import dagger.android.support.AndroidSupportInjection
@@ -19,16 +17,8 @@ class DependencyInjector {
 
         fun init(application: TwitterApplication) {
 
-            val dataComponent = DaggerDataComponent.builder().build()
-
             DaggerApplicationComponent
                 .builder()
-                .domainComponent(
-                    DaggerDomainComponent
-                        .builder()
-                        .dataComponent(dataComponent)
-                        .build()
-                )
                 .application(application)
                 .build()
                 .inject(application)

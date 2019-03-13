@@ -2,6 +2,7 @@ package com.arun.data.di
 
 import dagger.Component
 
+
 @Component(modules = [DataModule::class, NetworkModule::class])
 interface DataComponent {
 

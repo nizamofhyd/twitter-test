@@ -5,7 +5,8 @@ import com.arun.data.service.TwitterService
 import io.reactivex.Observable
 import javax.inject.Inject
 
-class TwitterFeedRepository @Inject constructor(val twitterService: TwitterService) : ITwitterFeedRepository {
+class TwitterFeedRepository @Inject constructor(private val twitterService: TwitterService) :
+    ITwitterFeedRepository {
 
     override fun getTwitterFeed(
         authHeader: String,

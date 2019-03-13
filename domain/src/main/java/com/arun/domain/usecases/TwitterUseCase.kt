@@ -1,12 +1,14 @@
 package com.arun.domain.usecases
 
+import com.arun.data.di.qualifiers.DataScope
 import com.arun.data.model.TwitterResponse
 import com.arun.data.repository.ITwitterFeedRepository
+import com.arun.data.repository.TwitterFeedRepository
 import com.arun.domain.models.Tweet
 import io.reactivex.Observable
 import javax.inject.Inject
 
-class TwitterUseCase @Inject constructor(private val twitterFeedRepository: ITwitterFeedRepository) {
+class TwitterUseCase @Inject constructor(private val twitterFeedRepository: TwitterFeedRepository) {
 
     private val KEY_LIST_ID = "list_id"
     private val KEY_TWEET_MODE = "tweet_mode"
