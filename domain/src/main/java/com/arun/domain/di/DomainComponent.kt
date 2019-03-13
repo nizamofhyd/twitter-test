@@ -3,7 +3,7 @@ package com.arun.domain.di
 import com.arun.data.di.DataComponent
 import dagger.Component
 
-@Component(dependencies = [DataComponent::class])
+@Component(modules = [DomainModule::class], dependencies = [DataComponent::class])
 interface DomainComponent {
 
     @Component.Builder
