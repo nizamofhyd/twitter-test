@@ -56,7 +56,12 @@ class MainActivity : AppCompatActivity(), HasSupportFragmentInjector {
                     val dialog = AlertDialog.Builder(this)
                         .setTitle(R.string.dialog_title)
                         .setMessage(R.string.dialog_error_msg)
-                        .setPositiveButton(R.string.dialog_positive) { dialog, which -> dialog.dismiss() }
+                        .setPositiveButton(R.string.dialog_positive) { dialog, which ->
+                            run {
+                                dialog.dismiss()
+                                finish()
+                            }
+                        }
                         .show()
 
                 }
