@@ -17,6 +17,8 @@ ext {
     junitVersion = "4.12"
     mockitoKotlinVersion = "2.0.0-RC2"
     archCoreTestingVersion = "1.1.1"
+    coreVersion = "3.1.0"
+    testVersion = "1.1.0"
 
     //====Libraries=========
 
@@ -26,9 +28,9 @@ ext {
     multiDex = "androidx.multidex:multidex:${multidexVersion}"
     lifeCycleExtensions = "androidx.lifecycle:lifecycle-extensions:${archLifecycleVersion}"
     lifeCycleCommon = "androidx.lifecycle:lifecycle-common-java8:${archLifecycleVersion}"
-    findBugs =  "com.google.code.findbugs:jsr305:${findBugsVersion}"
-    recyclerView =  "androidx.recyclerview:recyclerview:${androidSupportVersion}"
-    cardView =  "androidx.cardview:cardview:${androidSupportVersion}"
+    findBugs = "com.google.code.findbugs:jsr305:${findBugsVersion}"
+    recyclerView = "androidx.recyclerview:recyclerview:${androidSupportVersion}"
+    cardView = "androidx.cardview:cardview:${androidSupportVersion}"
 
     //Kotlin
     kotlin = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${kotlin_version}"
@@ -50,6 +52,11 @@ ext {
     retrofitGsonConverter = "com.squareup.retrofit2:converter-gson:${retrofitVersion}"
 
     //Test libraries
+    espressoCore = "androidx.test.espresso:espresso-core:${coreVersion}"
+    espressoIdleResource = "androidx.test.espresso:espresso-idling-resource:${coreVersion}"
+    testRunner = "androidx.test:runner:${testVersion}"
+    testRules = "androidx.test:rules:${testVersion}"
+
     junit = "junit:junit:${junitVersion}"
     mockitoKotlin = "com.nhaarman.mockitokotlin2:mockito-kotlin:${mockitoKotlinVersion}"
     archCore = "android.arch.core:core-testing:${archCoreTestingVersion}"
@@ -77,6 +84,14 @@ ext {
             [configuration: "implementation", dependency: rxJava2],
             [configuration: "implementation", dependency: retrofit],
             [configuration: "implementation", dependency: findBugs]
+    ]
+
+    androidTestDependencies = [
+            [configuration: "androidTestImplementation", dependency: espressoCore],
+            [configuration: "androidTestImplementation", dependency: espressoIdleResource],
+            [configuration: "androidTestImplementation", dependency: testRunner],
+            [configuration: "androidTestImplementation", dependency: testRules],
+            [configuration: "androidTestImplementation", dependency: mockitoKotlin]
     ]
 
     //Imported in all modules

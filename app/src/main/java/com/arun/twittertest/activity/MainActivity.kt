@@ -1,6 +1,7 @@
 package com.arun.twittertest.activity
 
 import android.os.Bundle
+import androidx.annotation.VisibleForTesting
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -11,6 +12,7 @@ import com.arun.domain.models.Tweet
 import com.arun.twittertest.R
 import com.arun.twittertest.adapters.TwitterListAdapter
 import com.arun.twittertest.di.Injectable
+import com.arun.twittertest.util.BackgroundIdleResourceListener
 import com.arun.twittertest.util.Status
 import com.arun.twittertest.viewmodels.TwitterFeedViewModel
 import kotlinx.android.synthetic.main.activity_main.*
@@ -25,6 +27,9 @@ class MainActivity : AppCompatActivity(), Injectable {
     private lateinit var twitterFeedViewModel: TwitterFeedViewModel
 
     private lateinit var twitterListAdapter: TwitterListAdapter
+
+    //Used for espresso idle resource listener
+    var backgroundIdleResourceListener: BackgroundIdleResourceListener? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,6 +49,7 @@ class MainActivity : AppCompatActivity(), Injectable {
                 Status.SUCCESS -> {
                     it.model as List<Tweet>
                     twitterListAdapter.updateTweets(it.model)
+                    backgroundIdleResourceListener?.end()
                 }
                 Status.ERROR -> {
                     val dialog = AlertDialog.Builder(this)
@@ -64,5 +70,10 @@ class MainActivity : AppCompatActivity(), Injectable {
 
     fun fetchData() {
         twitterFeedViewModel.getTwitterFeed()
+    }
+
+    @VisibleForTesting
+    fun setIdle() {
+        backgroundIdleResourceListener?.start()
     }
 }

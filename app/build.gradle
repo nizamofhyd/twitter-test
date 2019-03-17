@@ -28,6 +28,9 @@ dependencies {
     rootProject.kaptProcessorsDependencies.each { item ->
         add(item.configuration, item.dependency, item.options)
     }
+    rootProject.androidTestDependencies.each { item ->
+        add(item.configuration, item.dependency, item.options)
+    }
     rootProject.unitTestsDependencies.each { item ->
         add(item.configuration, item.dependency, item.options)
     }
