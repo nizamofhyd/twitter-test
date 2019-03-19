@@ -7,6 +7,7 @@ import com.arun.domain.usecases.TwitterUseCase
 import com.arun.twittertest.util.LiveModel
 import com.arun.twittertest.util.Status
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
@@ -14,9 +15,10 @@ class TwitterFeedViewModel @Inject constructor(private val twitterUseCase: Twitt
 
     val tweetsLiveData = MutableLiveData<LiveModel<List<Tweet>>>()
     lateinit var liveModel: LiveModel<List<Tweet>>
+    lateinit var disposable: Disposable
 
     fun getTwitterFeed() {
-        twitterUseCase.getTwitterFeed()
+        disposable = twitterUseCase.getTwitterFeed()
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.io())
             .subscribe(
@@ -32,5 +34,10 @@ class TwitterFeedViewModel @Inject constructor(private val twitterUseCase: Twitt
                 },
                 { println("Tweets received successfully !!") })
 
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        if (!disposable.isDisposed) disposable.dispose()
     }
 }
